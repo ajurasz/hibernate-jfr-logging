@@ -23,7 +23,7 @@ class Query private constructor(private val sql: String, private val params: Col
 
     private val isParameterPlaceholder = { char: Char -> '?' == char }
 
-    private fun resolveParameter(queryParams: ArrayDeque<Param>) = typeProvider(queryParams.removeFirst())
+    private fun resolveParameter(queryParams: ArrayDeque<Param>) = typeProvider(queryParams.removeFirst().value)
 }
 
 private class Param(val index: Int, val value: Any)
