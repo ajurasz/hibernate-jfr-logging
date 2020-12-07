@@ -5,7 +5,7 @@ import net.ttddyy.dsproxy.QueryInfo
 import net.ttddyy.dsproxy.listener.QueryExecutionListener
 
 class QueryRecorder : QueryExecutionListener by QueryExecutionListener.DEFAULT {
-    override fun beforeQuery(execInfo: ExecutionInfo?, queryInfoList: MutableList<QueryInfo>) {
+    override fun afterQuery(execInfo: ExecutionInfo?, queryInfoList: MutableList<QueryInfo>) {
         resolveQuery(queryInfoList)
                 .forEach(::publishEvent)
     }
