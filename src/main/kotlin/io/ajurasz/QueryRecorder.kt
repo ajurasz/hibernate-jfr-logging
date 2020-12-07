@@ -20,6 +20,6 @@ class QueryRecorder : QueryExecutionListener by QueryExecutionListener.DEFAULT {
 
 @Name("io.ajurasz.QueryEvent")
 @Label("Query")
-@Category("Hibernate")
+@Category("DataSource")
 @StackTrace(false)
 class QueryEvent(@Label("Sql") val sql: String): Event()
