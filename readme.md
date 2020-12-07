@@ -1,3 +1,5 @@
+Sample application for https://ajurasz.github.io/2020-12-07-use-jdk-flight-recorder-to-log-sql-queries/
+
 ## Useful commands
 
 ```
