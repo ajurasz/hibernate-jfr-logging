@@ -7,27 +7,29 @@ sealed class Type {
 
     abstract override fun toString(): String
 
-    class AnyType(private val value: Any) : Type() {
+    companion object {
+        fun of(value: Any) = when (value) {
+            is String -> StringType(value)
+            is Number -> NumberType(value)
+            is Timestamp -> TimestampType(value)
+            else -> AnyType(value)
+        }
+    }
+
+    private class AnyType(private val value: Any) : Type() {
         override fun toString() = value.toString()
     }
 
-    class NumberType(private val value: Number) : Type() {
+    private class NumberType(private val value: Number) : Type() {
         override fun toString() = value.toString()
     }
 
-    class StringType(private val value: String) : Type() {
+    private class StringType(private val value: String) : Type() {
         override fun toString() = "'$value'"
     }
 
-    class TimestampType(private val value: Timestamp) : Type() {
+    private class TimestampType(private val value: Timestamp) : Type() {
         override fun toString() =
-            "'${value.toLocalDateTime().format(DateTimeFormatter.ofPattern("YYYY-MM-DD HH:MM:SS"))}'"
+                "'${value.toLocalDateTime().format(DateTimeFormatter.ofPattern("YYYY-MM-DD HH:MM:SS"))}'"
     }
-}
-
-fun typeProvider(value: Any) = when (value) {
-    is String -> Type.StringType(value)
-    is Number -> Type.NumberType(value)
-    is Timestamp -> Type.TimestampType(value)
-    else -> Type.AnyType(value)
 }

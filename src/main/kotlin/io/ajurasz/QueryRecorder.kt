@@ -1,6 +1,5 @@
 package io.ajurasz
 
-import jdk.jfr.*
 import net.ttddyy.dsproxy.ExecutionInfo
 import net.ttddyy.dsproxy.QueryInfo
 import net.ttddyy.dsproxy.listener.QueryExecutionListener
@@ -17,9 +16,3 @@ class QueryRecorder : QueryExecutionListener by QueryExecutionListener.DEFAULT {
 
     private fun publishEvent(query: Query) = QueryEvent(query.toSql()).commit()
 }
-
-@Name("io.ajurasz.QueryEvent")
-@Label("Query")
-@Category("DataSource")
-@StackTrace(false)
-class QueryEvent(@Label("Sql") val sql: String): Event()
